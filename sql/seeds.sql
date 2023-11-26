@@ -1,4 +1,4 @@
-USE workDB;
+USE work_db;
 
 INSERT INTO department (name)
 VALUES ("Sales");
@@ -21,7 +21,7 @@ INSERT INTO role (title, salary, department_id)
 VALUES ("Lawyer", 250000, 4);
 
 INSERT INTO employee (first_name, last_name, role_id, manager_id)
-VALUES ("Adam", "Tatar", 1, 3);
+VALUES ("Adam", "Tatar", 1, null);
 INSERT INTO employee (first_name, last_name, role_id, manager_id)
 VALUES ("Ryan", "Doob", 2, 1);
 INSERT INTO employee (first_name, last_name, role_id, manager_id)
@@ -33,6 +33,6 @@ VALUES ("Mikey", "Likey", 5, null);
 INSERT INTO employee (first_name, last_name, role_id, manager_id)
 VALUES ("The", "Bossman", 2, null);
 INSERT INTO employee (first_name, last_name, role_id, manager_id)
-VALUES ("Tay", "Jack", 4, 7);
+VALUES ("Tay", "Jack", 4, 6);
 INSERT INTO employee (first_name, last_name, role_id, manager_id)
 VALUES ("Jackie", "Moonlight", 1, 2);

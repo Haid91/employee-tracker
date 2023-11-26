@@ -1,4 +1,4 @@
-const mysql = require('mysql');
+const mysql = require('mysql2');
 const inquirer = require("inquirer");
 require("console.table");
 
@@ -6,8 +6,8 @@ const connection = mysql.createConnection({
     host: "localhost",
     port: 3306,
     user: "root",
-    password: "takecare1",
-    database: "workdb"
+    password: "Haideee.1991",
+    database: "work_db"
 });
 
 connection.connect(err => {
@@ -38,6 +38,7 @@ const askQuestions = async () => {
 
         switch (answers.choice) {
             case "view all employees":
+                console.log ("employees")
                 await viewEmployees();
                 break;
             case "view all departments":
@@ -78,6 +79,7 @@ const queryDatabase = async (query, params = []) => {
 };
 
 const viewEmployees = async () => {
+    console.log ("view employees")
     await queryDatabase("SELECT * FROM employee");
     askQuestions();
 };
@@ -90,6 +92,26 @@ const viewDepartments = async () => {
 const addEmployee = async () => {
     const res = await inquirer.prompt([
         // Employee prompts
+        {
+            type: 'input',
+            name: 'firstName',
+            message: 'what is the employee first name?'
+        },
+        {
+            type: 'input',
+            name: 'lastName',
+            message: 'what is the employee last name?' 
+        },
+        {
+            type: 'input',
+            name: 'roleId',
+            message: 'what is the employee role id?'
+        },
+        {
+            type: 'input',
+            name: 'managerId',
+            message: 'what is the manager id?'
+        }
     ]);
     await queryDatabase('INSERT INTO employee SET ?', {
         first_name: res.firstName,
