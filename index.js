@@ -89,6 +89,55 @@ const viewDepartments = async () => {
     askQuestions();
 };
 
+const addDepartment = async () => {
+    const res = await inquirer.prompt([
+        {
+            type: 'input',
+            name: 'departmentName',
+            message: 'What is the name of the new department?'
+        }
+    ]);
+
+    await queryDatabase('INSERT INTO department SET ?', {
+        name: res.departmentName
+    });
+
+    askQuestions();
+};
+
+const addRole = async () => {
+    const res = await inquirer.prompt([
+       {
+            type: 'input',
+            name: 'roleName',
+            message: 'What is the title of the role?'
+
+       },
+       {
+            type: 'input',
+            name: 'salarytype',
+            message: 'What is the salary of the role?'
+       },
+       {
+            type: 'input',
+            name: 'departmenttype',
+            message: 'What is the deprtment id?'
+       } 
+
+       
+       
+    ])
+
+    await queryDatabase('INSERT INTO role SET ?', {
+        title: res.roleName,
+        salary: res.salarytype,
+        department_id: res.departmenttype
+
+    });
+
+    askQuestions();
+}
+
 const addEmployee = async () => {
     const res = await inquirer.prompt([
         // Employee prompts
@@ -113,6 +162,26 @@ const addEmployee = async () => {
             message: 'what is the manager id?'
         }
     ]);
+
+    
+    
+    // Update the askQuestions function
+    //const askQuestions = async () => {
+        // ... existing code ...
+    
+       // switch (answers.choice) {
+            // ... other cases ...
+    
+          //  case "add department":
+           //     await addDepartment();
+            //    break;
+    
+            // ... other cases ...
+      //  }
+   // };
+
+    
+
     await queryDatabase('INSERT INTO employee SET ?', {
         first_name: res.firstName,
         last_name: res.lastName,
@@ -121,6 +190,10 @@ const addEmployee = async () => {
     });
     askQuestions();
 };
+
+
+
+
 
 // Similar functions for addDepartment, addRole, updateEmployeeRole
 // ...
